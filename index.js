@@ -36,21 +36,25 @@ class Todo {
   }
 
   handleDelete(e) {
-    const id = Number(e.target.getAttribute("data-id"));
-    const newData = this.data.filter(task => task.id !== id);
-
-    this.taskUI(newData);
-    this.data = newData;
+    console.time();
+    // const id = Number(e.target.getAttribute("data-id"));
+    // const elemmm = document.querySelector(`[data-id="${id}"]`);
+    // console.dir(id);
+    // const newData = this.data.filter(task => task.id !== id);
+    e.target.parentNode.remove(e.targets);
+    console.timeEnd();
+    // this.taskUI(newData);
+    // this.data = newData;
   }
 
   addTask() {
     const id = new Date().getUTCMilliseconds() * Math.random();
     const inputValue = this.nodes.input.value.trim();
-    console.log(inputValue);
     const taskName = inputValue != "" && typeof(inputValue) === 'string' ? inputValue : false;
     const newTask = { id, taskName} 
-    this.data.push(newTask); 
-    this.taskUI(this.data);
+
+    this.data.push(newTask);
+    this.taskUI(newTask);
   }
 
   emptyTaskUI() {
@@ -106,7 +110,7 @@ class Todo {
     this.nodes.wrapper = this.elementCreator({
       type: "div",
       attributes: {
-        class: "wrapper"
+        class: "Absolute-Center is-Fixed"
       }
     });
 
@@ -157,6 +161,7 @@ class Todo {
 
     this.nodes.button = this.elementCreator({
       type: "button",
+      text: "Add Task",
       attributes: {
         class: "header-btn-addTask"
       },
@@ -171,20 +176,18 @@ class Todo {
 
   }
 
-  taskUI(data = this.data) {
-    // Очистка контейнера taskLists перед добавлением новых задач
-    this.nodes.taskLists.innerHTML = '';
+  taskUI(data = newTask) {
+    const fragment = document.createDocumentFragment();
 
-    if (data.length === 0) {
-      this.emptyTaskUI();
-    }
+    // if (data.length === 0) {
+    //   this.emptyTaskUI();
+    // }
 
-    data.forEach((key) => {
       const task = this.elementCreator({
         type: "div",
         attributes: {
           class: "task",
-          "data-id": key.id
+          "data-id": data.id
         },
         container: this.nodes.taskLists
       });
@@ -200,7 +203,6 @@ class Todo {
 
       const taskText = this.elementCreator({
         type: "label",
-        text: key.name,
         attributes: {
           class: "task-name"
         },
@@ -223,14 +225,21 @@ class Todo {
         type: "button",
         attributes: {
           class: "btn-delete",
-          "data-id": key.id
+          "data-id": data.id
         },
         container: task,
         events: {
           click: { action: this.handleDelete}
         }
       });
-    })
+
+      fragment.appendChild(task);
+
+    // Очищаем контейнер
+    // this.nodes.taskLists.innerHTML = '';
+
+    // Добавляем фрагмент в контейнер одной операцией
+    this.nodes.taskLists.appendChild(fragment);
   }
   
 }
@@ -239,4 +248,3 @@ const TodoApp = new Todo();
 
 TodoApp.mainUI();
 TodoApp.inputUI();
-TodoApp.taskUI();

@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400&display=swap");
 html {
   font-family: "Nunito", sans-serif;
@@ -7,152 +8,164 @@ html {
 }
 
 body {
-  background-color: #e6dddd;
+  font-family: "Roboto", sans-serif;
+  background-color: #1a1a1a;
+  margin: 0;
+  padding: 0;
 }
 
-p {
-  margin: 0 auto;
+html, body {
+  height: 100%;
+  width: 100%;
 }
 
 .wrapper {
   display: flex;
   justify-content: center;
-  margin-top: 300px;
+  align-items: center;
+  height: 100vh;
 }
 
 .inner-wrapper {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  width: 20%;
-  color: #455963;
-  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.3);
-  border-radius: 12px;
+  width: 50%;
+  margin: auto;
+  background-color: #2c2c2c;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
 }
 
+/* Стили для заголовка */
 .header {
   display: flex;
-  flex-direction: row;
-  border-radius: 12px 12px 0px 0px;
-  background-color: white;
-  z-index: 10;
-}
-.header .todo-header_items {
-  display: flex;
   align-items: center;
-  margin-left: 32px;
+  margin-bottom: 20px;
 }
-.header .header-input {
-  width: 220px;
-  height: 20px;
-  padding: 10px 20px;
-  font-size: 15px;
-  border: 0px solid black;
-  border-width: 0px 0px 0px 0px;
-}
-.header .header-input:focus {
+
+.header-input {
+  flex-grow: 1;
+  padding: 10px;
+  border: none;
+  background-color: transparent;
+  border-bottom: 2px solid #00c4ff;
+  color: #fff;
+  font-size: 16px;
   outline: none;
 }
-.header .header-btn-addTask {
-  margin: 0px 7px 0px 15px;
-}
-.header .header-btn-addTask button {
-  background-color: grey;
-  border: 0px;
-  border-radius: 2px 2px 2px 2px;
-  display: flex;
-  align-items: center;
-}
-.header .header-btn-addTask .bi:active {
-  color: white;
-  background-color: rgb(196, 195, 195);
+
+.header-input::placeholder {
+  color: #aaa;
 }
 
+.header-btn-addTask {
+  margin-left: 10px;
+  padding: 10px 20px;
+  background-color: #00c4ff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.header-btn-addTask:hover {
+  background-color: #008cd9;
+}
+
+.header-btn-addTask:active {
+  background-color: #00527e;
+  color: #d8d8d8;
+}
+
+/* Стили для списка задач */
 .taskLists {
-  display: flex;
-  position: relative;
-  flex-direction: column;
-  background-color: rgb(223, 223, 223);
-  padding: 0.5px 0px 0.5px 0px;
-  max-height: 29vh;
-  overflow: auto;
-  font-size: 15.5px;
-}
-.taskLists .task {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  padding: 12px 20px;
-}
-.taskLists .task .task-status {
-  width: 18px;
-  height: 18px;
-  -webkit-appearance: none;
-  appearance: none;
-  border: 2px solid black;
-  border-radius: 50%;
-  background-color: #fff;
-  margin-right: 10px;
-  cursor: pointer;
-}
-.taskLists .task .task-status:checked {
-  width: 18px;
-  height: 18px;
-  background-image: url(../check-lg.svg);
-  border: 2px solid white;
-  border: 50%;
-  background-color: red;
-  background-position: center;
-}
-.taskLists .task .btn-like {
-  width: 18px;
-  height: 18px;
-  overflow: hidden;
-  border: 0px;
-  background-color: transparent;
-  background-image: url(../heart.svg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  cursor: pointer;
-}
-.taskLists .task .like-icon {
-  width: 18px;
-  height: 18px;
-  overflow: hidden;
-  border: 0px;
-  background-image: url(../heart.svg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  cursor: pointer;
-}
-.taskLists .task .like-icon-full {
-  width: 18px;
-  height: 18px;
-  overflow: hidden;
-  border: 0px;
-  background-image: url(../check2.svg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  cursor: pointer;
-}
-.taskLists .task .btn-like:active {
-  background-color: red;
-}
-.taskLists .task .btn-delete {
-  width: 18px;
-  height: 18px;
-  overflow: hidden;
-  border: 0px;
-  background-color: transparent;
-  background-image: url(../x-circle.svg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  cursor: pointer;
+  margin-bottom: 20px;
 }
 
+.taskEmpty {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  height: 35px;
+}
+.task .task-status {
+  margin-right: 10px;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #00c4ff;
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.task .task-status:checked {
+  background-color: #00c4ff;
+}
+.task .task-name {
+  flex-grow: 1;
+  font-weight: bold;
+  color: #fff;
+  font-size: 14px;
+}
+.task .like-icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-color: #ffab00;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.task .like-icon:hover {
+  background-color: #ff9800;
+}
+.task .btn-delete {
+  margin-left: 10px;
+  padding: 6px;
+  background-color: #ff2d55;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.task .btn-delete:hover {
+  background-color: #cc214f;
+}
+
+/* Стили для футера */
 .footer {
-  background-color: white;
-  border-radius: 0px 0px 12px 12px;
-  height: 30px;
-  position: relative;
+  text-align: center;
+  font-size: 12px;
+  color: #888;
+  margin-top: 20px;
+}
+
+/*
+////////////////////////
+///////Абсолютное выравнивание
+////////////////////////
+*/
+.Absolute-Center {
+  height: 50%;
+  width: 50%;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.Absolute-Center.is-Fixed {
+  position: fixed;
+  z-index: 999;
 }/*# sourceMappingURL=index.css.map */
